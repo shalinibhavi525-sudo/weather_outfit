@@ -5,7 +5,7 @@ app = Flask(__name__)
 API_KEY = "bbc1c9526990e6b41d79a0414ebeed1e"
 
 def get_weather(city):
-    """Fetch weather data for a given city."""
+
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
     response = requests.get(url).json()
     if response.get("main"):
@@ -15,7 +15,7 @@ def get_weather(city):
     return None, None
 
 def outfit_suggestion(temp, condition):
-    """Suggest an outfit based on temperature and weather condition."""
+    
     if temp is None:
         return "No weather data available."
 
@@ -35,7 +35,6 @@ def outfit_suggestion(temp, condition):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    """Render the index page and handle form submissions."""
     if request.method == "POST":
         city = request.form["city"]
         temp, condition = get_weather(city)
